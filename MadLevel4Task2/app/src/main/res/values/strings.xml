@@ -9,4 +9,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="label_MAD">Mad Level 4 Task 2</string>
+    <string name="label_game_history">Your Game History</string>
+    <string name="label_welcome">Welcome</string>
+    <string name="label_instructions">Instructions: select rock, paper or scissors to play.</string>
+    <string name="label_all_time_statistics">Your all time statistics</string>
+    <string name="label_versus">V.S.</string>
+    <string name="label_computer">Computer</string>
+    <string name="label_you">You</string>
 </resources>
