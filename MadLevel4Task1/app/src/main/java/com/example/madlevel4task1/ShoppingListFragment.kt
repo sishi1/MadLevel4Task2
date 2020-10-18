@@ -46,6 +46,8 @@ class ShoppingListFragment : Fragment() {
         initRv()
 
         fabAdd.setOnClickListener { showAddProductDialog() }
+
+        fabDelete.setOnClickListener { removeAllProducts() }
     }
 
     @SuppressLint("InflateParams")
@@ -139,6 +141,15 @@ class ShoppingListFragment : Fragment() {
             this@ShoppingListFragment.products.clear()
             this@ShoppingListFragment.products.addAll(shoppingList)
             shoppingListAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun removeAllProducts() {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                productRepository.deleteAllProduct()
+            }
+            getShoppingListFromDatabase()
         }
     }
 }
