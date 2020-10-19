@@ -17,4 +17,9 @@
     <string name="label_versus">V.S.</string>
     <string name="label_computer">Computer</string>
     <string name="label_you">You</string>
+    <string name="statistics">Win: %d, Draw %d, Lose: %d</string>
+    <string name="you_win">You win!</string>
+    <string name="draw">Draw!</string>
+    <string name="computer_wins">Computer wins!</string>
+    />
 </resources>
