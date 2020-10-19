@@ -5,7 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +27,6 @@ class HistoryFragment : Fragment() {
 
     private lateinit var gameRepository: GameRepository
     private lateinit var binding: FragmentHistoryBinding
-    private lateinit var navController: NavController
 
     private val mainScope = CoroutineScope(Dispatchers.Main)
     private val games = arrayListOf<Game>()
@@ -44,13 +44,18 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.hide()
         gameRepository = GameRepository(requireContext())
         getGamesFromDatabase()
 
         initRV()
 
-        ivDelete.setOnClickListener { deleteGamesFromDatabase() }
-        ivReturn.setOnClickListener { navController.navigate(R.id.action_SecondFragment_to_FirstFragment)}
+        binding.ivDelete.setOnClickListener { deleteGamesFromDatabase() }
+
+        binding.ivReturn.setOnClickListener {
+            (activity as AppCompatActivity).supportActionBar?.show()
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
     }
 
     private fun initRV() {

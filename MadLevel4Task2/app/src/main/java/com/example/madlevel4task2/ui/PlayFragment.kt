@@ -18,7 +18,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Math.floorMod
-import java.time.LocalDateTime.now
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.random.Random
 
 /**
@@ -31,6 +32,9 @@ class PlayFragment : Fragment() {
 
     private val mainScope = CoroutineScope(Dispatchers.Main)
     private val RPS = RockPaperScissors.values()
+
+    private val sdf = SimpleDateFormat("dd.MM.yyyy 'at' HH:mm:ss z", Locale.getDefault())
+    private var currentDateAndTime: String = sdf.format(Date())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +54,7 @@ class PlayFragment : Fragment() {
         binding.ivPaper.setOnClickListener { play(RockPaperScissors.PAPER) }
         binding.ivScissors.setOnClickListener { play(RockPaperScissors.SCISSORS) }
 
+        updateStats()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -79,7 +84,7 @@ class PlayFragment : Fragment() {
             player = player.ordinal,
             computer = computer.ordinal,
             winner = winner.ordinal,
-            date = now().toString()
+            date = currentDateAndTime
         )
 
         mainScope.launch {

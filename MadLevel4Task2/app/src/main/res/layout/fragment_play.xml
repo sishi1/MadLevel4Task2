@@ -48,8 +48,9 @@
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="0dp"
-        android:layout_height="14dp"
+        android:layout_height="30dp"
         android:layout_margin="24dp"
+        android:textAlignment="center"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ivYou"
